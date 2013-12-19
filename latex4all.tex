@@ -86,7 +86,7 @@
 
 \title{모두를 위한 \LaTeX\\\small{부제: 근본없는 매뉴얼}}
 \author{dokenzy@gmail.com}
-\date{0.1판\\\today}
+\date{0.2판\\2013년 12월 20일}
 \feetbelowfloat
 
 \begin{document}
@@ -99,7 +99,15 @@
 \ccbyncsa\\
 {\scriptsize 이 저작물은 크리에이티브 커먼즈 저작자표시 4.0 국제 라이선스\footnote{\href{http://creativecommons.org/licenses/by/4.0/}{http://creativecommons.org/licenses/by/4.0/}}에 따라 이용할 수 있습니다.}
 \end{center}
+
 \clearpage
+\section*{바뀐 점}
+\begin{description}
+\item[0.2] 2013년 12월 20일. `워드 프로세서, 멍청하고 비효율적인 도구' 한글판 링크 추가, 자잘한 것 몇 개 수정
+\item[0.1] 2013년 12월 13일. 최초 공개
+\end{description}
+\clearpage
+
 \tableofcontents
 %\listoffigures
 %\listoftables
@@ -113,7 +121,7 @@
 
 워드프로세서와 무엇이 어떻게 다른지 궁금한 사람들을 위해 \href{http://nitens.org/taraborelli/latex}{The Beauty of \LaTeX}이라는 글을 소개한다. 해석하지 않아도 된다. 단지 눈으로 비교해 보는 것만으로도 충분하다. 게다가 워드프로세서는 물론, 인디자인 같은 전문 조판 프로그램조차 상상도 할 수 없는 일을 할 수 있다. 2011년 한국텍학회 학술대회에서 조진환 교수님께서 발표하신 \href{http://conf.ktug.org/2011/Program_files/KTS2011-chof.pdf}{함초롬 - 글꼴을 이용한 자소 분리}를 보라(\figurename~\ref{fig:hcr}). 이 발표는 2013년 10월에 열린 \href{http://tug.org/tug2013/}{TUG 2013}에서도 발표되어 큰 관심을 받았다.
 
-CSS 없이 HTML 코드에 스타일을 구겨 넣었던 1990년대를 기억하는가? 그런데 워드프로세서는 왜 아직도 그 꼴을 벗어나지 못하는 것인가? 워드프로세서는 할 수 없다. 앞으로도 그렇다. \href{http://ricardo.ecn.wfu.edu/~cottrell/wp.html}{Word Processors: Stupid and Inefficient}라는 글을 읽어보자.\footnote{나는 한국어로 번역된 문서를 읽었다. 지금 한국어 번역판을 찾을 수 없어서 매우 아쉽다.} 나 또한 완전히 동의한다. 이제 워드프로세서의 늪에서 벗어나 보자.
+CSS 없이 HTML 코드에 스타일을 구겨 넣었던 1990년대를 기억하는가? 그런데 워드프로세서는 왜 아직도 그 꼴을 벗어나지 못하는 것인가? 워드프로세서는 할 수 없다. 앞으로도 그렇다. 김강수님이 번역하신 \href{https://www.dropbox.com/s/fjmszvq6f05dlxg/wpkor.pdf}{워드 프로세서, 멍청하고 비효율적인 도구}라는 글을 읽어보자. 나 또한 완전히 동의한다. 이제 워드프로세서의 늪에서 벗어나 보자.
 
 \begin{figure}[!hbtp]
 \caption{함초롬을 이용한 자소 분리(조진환)}
@@ -146,7 +154,7 @@ CSS 없이 HTML 코드에 스타일을 구겨 넣었던 1990년대를 기억하�
 \end{description}
 
 \section{Mac OS X에서 폰트경로 설정하기}
-Mac OS에서는 \XeTeX을 위한 설정을 한 번 해주어야 한다. \footnote{윈도우즈는 \texttt{fc-cache}명령을 실행해야 한다. ko.TeX Live 2013을 설치하면 자동으로 해준다.}
+Mac OS에서는 \XeTeX을 위한 설정을 한 번 해주어야 한다. \footnote{윈도우즈는 \texttt{fc-cache}명령을 실행해야 한다. ko.TeX Live 2013는 설치 과정 마지막에 자동으로 해준다.}
 
 /usr/local/texlive/2013/texmf.cnf 파일을 텍스트 에디터로 열어서 다음 내용을 추가하자.
 
@@ -168,7 +176,7 @@ OSFONTDIR = {~/Library/Fonts;/Library/Fonts;/System/Library/Fonts}
 \end{pyglist}
 굉장히 많은 폰트들이 각 폴더에 들어있다. 전부 다 해도 되고 원하는 폰트(폴더)만 선택해도 된다.
 \end{enumerate}
-같은 방식으로 truetype 폰트들도 추가할 수 있다.\footnote{/usr/local/texlive/2013/texmf-dist/fonts/truetype/public} 이제 Mac에서 \XeTeX을 사용하기 위한 설정을 모두 마쳤다.
+같은 방식으로 truetype 폰트들도 추가할 수 있다.\footnote{/usr/local/texlive/2013/texmf-dist/fonts/truetype/public} 이제 Mac에서 \XeTeX을 사용하기 위한 설정을 모두 마쳤다\footnote{윈도우즈에서는 폰트를 시스템에 설치할 때마다 fc-cache 명령을 실행하면 된다.}.
 
 \section{테스트}\label{sec:test}
 이제 \LaTeX을 사용하기 위한 준비를 모두 마쳤다. 아무 텍스트 편집기라도 사용할 수 있지만 여기서는 TeXLive를 설치할 때 함께 설치되는 \texworks를 사용하기로 한다. \texworks를 실행하고 아래 코드를 입력하자.
@@ -177,7 +185,8 @@ OSFONTDIR = {~/Library/Fonts;/Library/Fonts;/System/Library/Fonts}
 \documentclass[oneside, a4paper]{article}
 \usepackage{kotex}
 \setmainhangulfont{HCR Batang LVT}
-% 맑은고딕 폰트가 없으면 다른 한글폰트로 바꾸자.
+% 함초롬 바탕 LVT를 다운로드 & 설치하자
+% 다운로드 주소: http://bit.ly/1hnXefL
 \begin{document}
 \section[시작]{\LaTeX 시작하기}
 \begin{center}
@@ -474,7 +483,7 @@ Rerun to get cross-references right.
 \toprule
 \verb|\tiny| & {\tiny 제일 작은 크기}\\
 \verb|\scriptsize| & {\scriptsize scriptsize}\\
-\verb|\footnotesize| & {\footnotesize footnotesize}\\
+\verb|\footnotesize| & {\footnotesize 각주 크기}\\
 \verb|\small| & {\small small}\\
 \verb|\normalsize| & {\normalsize 본문 기본 크기}\\
 \verb|\large| & {\large large}\\
@@ -1044,7 +1053,7 @@ Digital Typography}] 조진환
 \pagestyle{empty}
 \pagenumbering{gobble}
 \chapter*{마치며}
-근본없는 \LaTeX 매뉴얼은 여기까지다. 힘들어서 맞춤법 수정도 포기했다. tex 소스가 겨우 1050라인에 불과한, A4기준 50쪽도 안되는 문서인데도 불구하고 힘들다. memoir설명서나 lshort-kr같은 문서를 번역하신 분들의 노고가 새삼 더 크게 느껴진다.
+근본없는 \LaTeX 매뉴얼은 여기까지다. 힘들어서 맞춤법 수정도 포기했다. tex 소스가 겨우 1050줄에 불과한, A4기준 50쪽도 안되는 문서인데도 불구하고 힘들다. memoir설명서나 lshort-kr같은 문서를 번역하신 분들의 노고가 새삼 더 크게 느껴진다.
 
 영국이나 미국 등에서 초등학생부터 컴퓨터 프로그래밍 교육을 시작한다고 한다. 특히 영국은 5세부터는 간단한 프로그래밍 과정을 가르치고, 11세 이상 학생에게는 실제 프로그래밍 언어를 교육한다고 한다. 나는 \LaTeX 교육도 프로그래밍 교육 이상의 효과가 있을 것이라고 생각한다. 프로그래밍하듯이 글쓰기를 하니 이보다 좋은 교육방법이 있을까? 또한 웹퍼블리셔에게도 좋은 훈련 방법이 될 것이다. validator만 통과한다고 좋은 마크업이 아니잖은가.
 
