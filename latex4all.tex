@@ -6,7 +6,6 @@
 
 \usepackage{ccicons}
 \usepackage{etoolbox}
-\usepackage{caption}
 \usepackage{graphicx}
 \graphicspath{{images/}}
 \usepackage{kotex-logo}
@@ -78,15 +77,21 @@
 \newcommand{\texworks}{TeXworks}
 %\setmonofont{NanumBarunGothicOTF}
 \setmainhangulfont{HCR Batang LVT}
+\setsanshangulfont{HCR Dotum LVT}
 \setmonohangulfont[Scale=.9]{HCR Dotum LVT}
 \newfontface{\applesymbol}{Apple Symbols}
 \newfontface{\zapfino}{Zapfino}
 \setlength\parskip{1.0em}
 \setlength\parindent{0pt}
 
+% 그림 캡션 모양
+\captiondelim{ } % "그림:" 에서 ":"을 없앰
+\captionnamefont{\footnotesize\bfseries\sffamily} % "그림"을 굵게
+\captiontitlefont{\footnotesize\sffamily} % 본문은 보통 굵기로
+
 \title{모두를 위한 \LaTeX\\\small{부제: 근본없는 매뉴얼}}
 \author{dokenzy@gmail.com}
-\date{0.2판\\2013년 12월 20일}
+\date{0.3판\\2013년 12월 20일}
 \feetbelowfloat
 
 \begin{document}
@@ -103,6 +108,7 @@
 \clearpage
 \section*{바뀐 점}
 \begin{description}
+\item[0.3] 2013년 12월 20일. 맞춤법 수정, MWE 내용 추가, 자잘한 것 몇 개 수정. 조언해주신 이주호님께 감사드립니다.
 \item[0.2] 2013년 12월 20일. `워드 프로세서, 멍청하고 비효율적인 도구' 한글판 링크 추가, 자잘한 것 몇 개 수정
 \item[0.1] 2013년 12월 13일. 최초 공개
 \end{description}
@@ -229,13 +235,11 @@ OSFONTDIR = {~/Library/Fonts;/Library/Fonts;/System/Library/Fonts}
 
 \subsection{클래스(document class)}
 예제코드의 \verb|\documentclass[oneside]{article}|부분이다.
-클래스는 문서의 성격을 결정하는 가장 중요한 부분으로 tex문서를 작성할 때 반드시 가장 먼저 한 번만 쓰인다. 템플릿처럼 문서 전체의 모양을 결정할 뿐만 아니라, 많은 기능과 옵션을 제공한다. 예컨데 예제코드의 \verb|\section{시작하기}| 명령은 article 클래스가 제공하기 때문에 사용할 수 있다. 하지만 \verb|\chapter{시작하기}|명령을 사용하면 오류가 발생한다. article 클래스에는 없는 명령이기 때문이다. 또다른 표준클래스인 report 클래스는 \verb|\chapter{}|명령을 제공하기 때문에 사용할 수 있다.
+클래스는 문서의 성격을 결정하는 가장 중요한 부분으로 tex문서를 작성할 때 반드시 가장 먼저 한 번만 쓰인다. 템플릿처럼 문서 전체의 모양을 결정할 뿐만 아니라, 많은 기능과 옵션을 제공한다. 예컨대 예제코드의 \verb|\section{시작하기}| 명령은 article 클래스가 제공하기 때문에 사용할 수 있다. 하지만 \verb|\chapter{시작하기}|명령을 사용하면 오류가 발생한다. article 클래스에는 없는 명령이기 때문이다. 또다른 표준클래스인 report 클래스는 \verb|\chapter{}|명령을 제공하기 때문에 사용할 수 있다.
 
-oneside 옵션은 article 클래스가 제공하는 옵션이다. 이 외에 a4paper, 11pt, landscape 등의 옵션들이 있다. 어떤 옵션을 쓸 수 있을지는 전적으로 클래스에 달려있다. 만약 클래스에서 제공하지 않는 기능들을 사용하고 싶다면, 관련 패키지를 사용하거나 직접 정의(\ref{sec:newcommand}\chaptername~\titleref{sec:newcommand})해야 한다.
+oneside 옵션은 article 클래스가 제공하는 옵션이다. 이 외에 a4paper, 11pt, landscape 등의 옵션들이 있다. 어떤 옵션을 쓸 수 있는지는 전적으로 클래스에 달려있다. 만약 클래스에서 제공하지 않는 기능들을 사용하고 싶다면, 관련 패키지를 사용하거나 직접 정의(\ref{sec:newcommand}\chaptername~\titleref{sec:newcommand})해야 한다.
 %
 \subsection{명령(command)}\label{subsec:command}
-명령을 사용하면 이 명령 뒤에 있는 내용 전체에 영향을 미쳐서 원하지 않은 결과를 얻을 수 있다. 따라서 일정 구역에만 명령을 적용하기 위해서는 다음과 같은 방법을 사용한다.
-
 명령은 대체로 다음과 같은 형식을 갖는다.
 \begin{pyglist}
 \section[시작]{\LaTeX 시작하기}
@@ -246,7 +250,7 @@ oneside 옵션은 article 클래스가 제공하는 옵션이다. 이 외에 a4p
 \subsection{환경(environment)}\label{subsec:environment}
 환경은 예제의 \verb|\begin{center}|\ldots\verb|\end{center}|와 같은 형식을 갖는다. 옵션의 위치는 환경에 따라 조금씩 다를 수 있다.
 
-\verb|\begin{document}|\ldots\verb|\end{document}|도 환경이다. document 환경은 \LaTeX 문서라면 반드시 하나만 존재해야 하는 중요한 환경이다. 마치 HTML의 \verb|<body>|태그와 같다. 환경 역시 정확한 사용방법은 매뉴얼을 보는 것이다.
+\verb|\begin{document}|\ldots\verb|\end{document}|도 환경이다. \texttt{document} 환경은 \LaTeX 문서라면 반드시 하나만 존재해야 하는 중요한 환경이다. 마치 HTML의 \verb|<body>|태그와 같다. 환경 역시 정확한 사용방법은 매뉴얼을 보는 것이다.
 
 \subsection{프리앰블(Preamble)}
 프리앰블\footnote{전처리부라고 부를 수도 있지만, 나는 프리앰블이 익숙하다.}은 \verb|\documentclass{}|와 \verb|\begin{document}| 사이에 있는 부분을 말한다. 예제코드에서 
@@ -254,7 +258,7 @@ oneside 옵션은 article 클래스가 제공하는 옵션이다. 이 외에 a4p
 \usepackage{kotex}
 \setmainhangulfont{HCR Batang LVT}
 \end{pyglist}
-가 위치한 곳이 바로 프리앰블이다. HTML의 \verb|<head>|태그와 비슷한 기능을 하지만 프리앰블을 명시하는 별도의 명령은 없다. 패키지를 불러오거나(\verb|\usepackage{}|), 사용자가 명령이나 환경을 정의할 때에는 프리앰블에 해야 한다.
+가 위치한 곳이 바로 프리앰블이다. HTML의 \verb|<head>|태그와 비슷한 기능을 하지만 프리앰블이라고 명시하는 명령은 따로 없다. 패키지를 불러오거나(\verb|\usepackage{}|), 명령이나 환경을 정의할 때에는 프리앰블에 해야 한다.
 
 \subsection{패키지(package)}
 패키지를 사용하면 클래스가 제공하지 않는 많은 기능들을 이용할 수 있다. 대표적으로 한국어를 조판하기 위해서는 \koTeX 패키지를 사용해야 한다. 패키지를 사용하는 방법은 프리앰블에서 \verb|\usepackage[옵션]{패키지이름}|과 같은 방식으로 사용한다. 간혹 패키지끼리 충돌을 일으키거나 읽어들이는 순서(\verb|\usepackage{}|명령을 선언한 순서)에 따라 문제가 생길 수 있다. 이런 경우에는 \textbf{알아서 잘}(\ref{chap:mme}\chaptername~\titleref{chap:mme}) 해결하라.
@@ -393,7 +397,7 @@ HTML의 \verb|<ul>|태그와 같다. 항목 기호를 점 대신 하이픈(-)으
 \tableofcontents
 \end{pyglist}
 
-중요한 점은 최소 두 번 이상 컴파일해야 차례를 만들 수 있다. 한 번 컴파일하고 나서 PDF문서를 보면 차례에 아무 것도 나오지 않는 것을 쉽게 발견할 것이다. 하지만 foo.tex파일과 같은 폴더에 foo.toc 파일이 만들어졌을 것이다. 왜 두 번 이상 컴파일 해야 하는지, 어떻게 자동으로 만들어지는지 궁금한 사람은 foo.toc 파일을 살펴보기 바란다.
+중요한 점은 최소 두 번 이상 컴파일해야 차례를 만들 수 있다. 한 번 컴파일하고 나서 PDF문서를 보면 차례에 아무 것도 나오지 않는 것을 쉽게 알 수 있을 것이다. 대신 \texttt{foo.tex} 파일과 같은 폴더에 \texttt{foo.toc} 파일이 생겼을 것이다. 왜 두 번 이상 컴파일 해야 하는지, 어떻게 자동으로 만들어지는지 궁금한 사람은 foo.toc 파일을 살펴보기 바란다.
 
 \chaptername, \sectionname에 대한 차례 뿐만 아니라 \figurename이나 \tablename의 차례도 자동으로 만들 수 있다. 각각 다음 명령을 사용하자: \verb|\listoffigures|, \verb|listoftables|
 
@@ -424,11 +428,11 @@ HTML의 \verb|<ul>|태그와 같다. 항목 기호를 점 대신 하이픈(-)으
 \begin{pyglist}
 % 실제로는 한 줄로 입력했다.
 신데렐라\과 백설공주\은 왕자\를 사이에 두고 
-머리끄댕이\을 잡고 싸웠다더\이라
+머리끄덩이\을 잡고 싸웠다더\이라
 \end{pyglist}
 
 \begin{showresult} 
-신데렐라\과 백설공주\은 왕자\를 사이에 두고 머리끄댕이\을 잡고 싸웠다더\이라
+신데렐라\과 백설공주\은 왕자\를 사이에 두고 머리끄덩이\을 잡고 싸웠다더\이라
 \end{showresult}
 
 이제 자동조사기능까지 쓸 수 있다는 것을 알게 되었다. 그래도 워드프로세서를 고집하겠다는 사람이 있다면? 그런 사람은 방금 전 이 문서를 삭제했을테니 자동조사기능을 모를 것이다.
@@ -764,7 +768,7 @@ $x$ (도) & $\sin x$ & $\cos x$ & $\tan x$ \\
 \setmonohangulfont{타자글꼴}
 \end{pyglist}
 
-예컨데, 이 문서에 쓰인 한글본문폰트는 다음과 같이 설정했다.
+예컨대, 이 문서에 쓰인 한글본문폰트는 다음과 같이 설정했다.
 \begin{pyglist}
 \setmainhangulfont{HCR Batang LVT}
 \end{pyglist}
@@ -795,14 +799,14 @@ HCR Batang LVT는 \ref{sec:ktug}\sectionname~\titleref{sec:ktug}에서 언급한
 영문폰트와 한글폰트를 따로 지정하는 이유는, 한글폰트에 들어있는 영문폰트가 영어권 회사의 폰트보다 좋지 않기 때문이다. 따라서 한글폰트와 잘 어울리는 영문폰트를 선택하는 것이 중요하다. 무슨 폰트를 써야할지 막막한 사람은 이주호님이 문서작성워크숍에서 발표한 자료(\href{http://wiki.ktug.org/wiki/wiki.php/LaTeXWorkshop/2013?action=download&value=talk1_typography_by_progress.pdf}{타이포그래피})를 참고하자.
 
 \chapter{Minimal Working Example}\label{chap:mme}
-이제 \LaTeX으로 많은 것들을 할 수 있을 것이다. 차례, 상호참조, 목록, 박스꾸미기, \tablename, \ldots 하지만 컴파일하다가 오류를 만난 확률도 그만큼 높아질 것이다. 이제 어떻게 하면 오류를 찾고 해결할 수 있는지 그 방법을 찾아보자.
+이제 \LaTeX으로 많은 것들을 할 수 있을 것이다. 차례, 상호참조, 목록, 박스꾸미기, \tablename, \ldots~하지만 컴파일하다가 오류를 만난 확률도 그만큼 높아질 것이다. 이제 어떻게 하면 오류를 찾고 해결할 수 있는지 그 방법을 찾아보자.
 
 대부분의 오류는 다음과 같은 경우에 발생한다.
 
 \begin{itemize}
 \item 오타
 \item 괄호의 짝이 맞지 않을 때
-\item \verb|\begin{}|, \verb|end{}|짝이 맞지 않을 때
+\item \verb|\begin{}|, \verb|\end{}| 짝이 맞지 않을 때
 \item 없는 명령을 사용했을 때
 \item 없는 환경을 사용했을 때
 \item 옵션을 잘못 사용했을 때
@@ -813,20 +817,53 @@ HCR Batang LVT는 \ref{sec:ktug}\sectionname~\titleref{sec:ktug}에서 언급한
 오류메시지를 잘 읽어보면 어느 부분에서 오류가 발생했는지 알 수 있다. 이 오류메시지가 아주 정확한 경우도 있지만 그렇지 않은 경우도 있다. 어떤 부분의 오류 때문에 다른 부분이 오류가 발생하는 경우이다. 이런 오류는 원인을 알아내는 것이 어려울 수 있다. 패키지가 서로 충돌하는 경우도 어렵다. 하지만 Minimal Working Example(MWE)을 만들어보면 이런 경우도 오류의 원인을 비교적 쉽게 찾아낼 수 있다. 이 \chaptername의 목표는 오류의 원인을 찾는 것이지 오류를 해결하는 방법을 찾는 것이 아니다.
 
 \section{왜 MWE를 만들어야 하는가?}\label{sec:mme}
-문서를 만들다보면 이런저런 명령과 환경을 쓰기 위해 패키지를 사용하기 마련이다. 그러다가 에러메시지만으로 오류의 원인을 찾을 수 없게 되면 곤란해진다.\footnote{제일 곤란한 것은 오류없이 컴파일은 되는데 원하지 않은 결과가 나오는 것이다.} MWE는 바로 그런 경우에 특히 유용하다. 먼저 현재의 파일을 복사(\texttt{foo-mwe.tex})한다. 복사한 파일에서 오류와 관련없는 부분을 조금씩 삭제하면서 컴파일을 해본다. 이렇게 하다보면 원래 문서에서 발생한 오류과 같은 오류를 갖는 최소한의 텍 코드를 만들게 된다. 비록 컴파일할 때 오류가 발생하지만 어떤 환경(엔진, 클래스, 패키지, 명령, 인코딩 등 많은 조건들)에서 그런 오류가 발생하는지 알 수 있다. 
+문서를 만들다보면 이런저런 명령과 환경을 쓰기 위해 패키지를 사용하기 마련이다. 그러다가 에러메시지만으로 오류의 원인을 찾을 수 없게 되면 곤란해진다.\footnote{제일 곤란한 것은 오류없이 컴파일은 되는데 원하지 않은 결과가 나오는 것이다.} MWE는 바로 그런 경우에 특히 유용하다. 먼저 현재의 파일을 복사(\texttt{foo-mwe.tex})한다. 복사한 파일에서 오류와 관련없는 부분을 조금씩 삭제하면서 컴파일을 해본다. 이렇게 하다보면 원래 문서에서 발생한 오류과 같은 오류를 갖는 최소한의 텍 코드를 만들게 된다. 비록 컴파일할 때 오류가 발생하지만 어떤 환경(엔진, 클래스, 패키지, 명령, 인코딩 등 많은 조건들)에서 그런 오류가 발생하는지 알 수 있다.
 
-이제 남은 것은
-\begin{inparaenum}[1)]
-\item 스스로 해결하거나, \item 구글에서 검색하거나, \item KTUG에 질문하는 것이다.
-\end{inparaenum}
+이 문서를 작성하면서 의도한대로 결과가 나오지 않아 몇 번의 MWE를 만들어야 했다. 가장 최근에 만든 MWE 작업과정을 예로 들어보이겠다.
 
-스스로 해결하거나 구글에서 검색하는 것은 직접 해보면 되고, 이 문서에서는 KTUG에 질문을 올리는 요령을 간략히 설명한다.
+그림의 캡션 모양을 수정하기 위해 프리앰블에 다음과 같은 코드를 입력했다. 하지만 결과가 바뀌지 않았다.
+\begin{pyglist}
+\captiondelim{ }
+\captionnamefont{\footnotesize\bfseries\sffamily}
+\captiontitlefont{\footnotesize\sffamily}
+\end{pyglist}
+50페이지 분량의 컴파일 과정이 후다닥 지나가 버린다. \texttt{log}파일도 2500줄이 넘는다. MWE를 만들어야겠다.
 
 \begin{enumerate}
-\item MWE을 만든다.
+\item \texttt{latex4all.tex}파일을 \texttt{captiontest.tex}파일로 복사한다.
+\item 그림 캡션이 의도한대로 잘 나오는지 확인만 하면 되니까 첫번째 그림부분을 제외하고 본문에서 내용을 전부 삭제한다\verbfootnote{당연히 문서 맨 끝에 \verb|\end{document}|는 있어야한다.}.
+\item 프리앰블에서도 그림과 상관없는 것들을 모두 지운다.
+\item 이제 의도한대로 잘 나온다. 프리앰블에 뭔가 잘못된 것이 있을 것이다.
+\item 그림 캡션과 관련이 있을테니 이와 관련된 패키지를 찾아봐야겠다.
+\item \verb|\usepackage{caption}|이 있다. 이걸 다시 넣고 테스트해보자.
+\end{enumerate}
+
+이런 경고가 보인다.
+
+\begin{pyglist}
+Class memoir Warning: You are using the caption package with
+the memoir class. To prepare we will now reset all captioning
+macros and configurations to kernel defaults, and then let the
+caption package take over. Please remember to use the caption
+package interfaces in order to configure your captions.
+\end{pyglist}
+
+그렇다. 내가 사용하는 \texttt{oblivoir}라는 클래스는 \texttt{memoir}클래스 위에서 동작하는데, \texttt{memoir}클래스에서 제공하는 캡션 관련 명령들이 \texttt{caption} 패키지 때문에 동작하지 않은 것이었다. 
+
+물론 이 경고 메시지는 1,000줄 짜리 \texttt{latex4all.tex}파일을 컴파일 할 때도 있었다. 하지만 2,500줄이 넘는 \texttt{log}파일에서 이걸 찾아내려면\ldots
+
+이제 원인을 알았으므로 문제를 해결해보자. 다행히 이 문제는 \verb|\usepackage{caption}|을 지우는 것으로 해결할 수 있었다. 하지만 어떤 경우엔 해결방법을 찾는 것이 어려울 때도 있는 법, 이럴 때 해결하는 방법은
+\begin{inparaenum}[1)]
+\item 구글이나 KTUG에서 검색하거나, \item KTUG에 질문하는 것이다.
+\end{inparaenum}
+
+검색은 직접 해보면 되고, 이 문서에서는 KTUG에 질문을 올리는 요령을 간략히 설명한다.
+
+\begin{enumerate}
+\item MWE를 만든다.
 \item 그림파일이 있다면 그림파일도 포함한다.
-\item KTUG의 질문게시판에 자신의 텍 환경\footnote{운영체제, TeXLive 버전, 사용한 텍 엔진 등}과 오류내용, 원하는 결과 등을 적고
-\item 파일을 첨부해서 올린다.
+\item KTUG의 질문게시판에 자신의 텍 환경(운영체제, TeXLive 버전, 사용한 텍 엔진 등)과 오류내용, 원하는 결과 등을 적고
+\item 파일을 첨부해서 올린다. 압축포맷은 \texttt{zip}이 가장 좋다.
 \end{enumerate}
 
 `이 정도면 되겠지?'하고 위아래 싹뚝 자르고 코드 일부만 올리고 질문하는 분들이 있다. 또는 아무 코드 없이 얘기만 하는 분들도 있다. 이렇게 올리면 대답도 추상적일 수 밖에 없다. MWE파일을 만들어서 올리자. 이것이 서로 편한 길이다.
