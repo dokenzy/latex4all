@@ -1,3 +1,4 @@
+%!TEX TS-program = xelatex
 %!TEX encoding = UTF-8 Unicode
 % main.tex
 % copyright dokenzy@gmail.com
@@ -144,7 +145,7 @@ CSS 없이 HTML 코드에 스타일을 구겨 넣었던 1990년대를 기억하�
 \section{\XeLaTeX은 무엇인가?}
 이 \sectionname에서 언급하는 단어들을 처음 접하는 사람들은 혼란스러울 수 있다. 아니면 이미 등장한 \LaTeX, \koTeX, \TeX이란 용어때문에 아까부터 혼란스러운 사람이 있을 수도 있다. 조금이라도 혼란스럽다면 과감히 이 \sectionname을 넘어가자. 시작하기도 전에 용어 때문에 스트레스받지 말자. 자동차 운전을 처음 배우는 사람이 자동차 엔진부터 배울 필요는 없다. 이 문서는 운전을 시연하는 수준일 뿐이다. \LaTeX이라는 차를 어떻게 운전하는지 지켜본다는 마음으로 가볍게 읽자.
 
-\LaTeX은 매크로언어이다. \LaTeX을 한다는 말은 이 매크로언어로 만든 텍 파일(*.tex)을 처리해서 최종적으로 원하는 문서(예를 들면, PDF파일)를 만든다는 것이다. 이 텍 파일을 처리하기 위해서는 텍 엔진이라는 프로그램이 필요하다. 현재 TeXLive에는 5개의 텍 엔진이 있는데 이 문서에서는 \XeTeX이라는 엔진을 이용한 방법만 다룬다. \XeTeX은 시스템에 설치된 대부분의 truetype이나 opentype 폰트 등을 직접 사용할 수 있기 때문이다.\footnote{\XeTeX에서 사용하지 못하는 트루타입이나 오픈타입 폰트 등은 대부분 폰트 자체에 문제가 있기 때문이다.}
+\LaTeX은 매크로언어이다. \LaTeX을 한다는 말은 이 매크로언어로 만든 텍 파일(*.tex)을 처리해서 최종적으로 원하는 문서(예를 들면, PDF파일)를 만든다는 것이다. 이 텍 파일을 처리하기 위해서는 텍 엔진이라는 프로그램이 필요하다. 현재 TeXLive에는 5개의 텍 엔진이 있는데 이 문서에서는 \XeTeX이라는 엔진을 이용한 방법만 다룬다. \XeTeX은 시스템에 설치된 대부분의 truetype이나 opentype 폰트 등을 직접 사용할 수 있기 때문이다.\footnote{\XeTeX에서 사용하지 못하는 트루타입이나 오픈타입 폰트는 대부분 폰트 자체에 문제가 있다.}
 
 \koTeX은 \TeX으로 한글을 조판하기 위한 시스템이다. \XeTeX-\ko는 \XeTeX 엔진을 위한 \koTeX 패키지이다. \koTeX 2.0 설명서에 따르면 현재 한글 문헌을 가장 안정적으로 조판할 수 있는 것은 \XeTeX-\ko라고 한다. 그래서 이 문서에서는 \XeLaTeX만을 다룬다.\footnote{내가 그나마 조금 할 줄 아는 것도 이것 뿐이다.} \XeLaTeX이란 `\XeTeX이라는 텍 엔진'으로 `\LaTeX 매크로언어로 작성한 텍 파일'을 처리하는 프로그램이라고 할 수 있겠다.
 
@@ -295,12 +296,17 @@ oneside 옵션은 article 클래스가 제공하는 옵션이다. 이 외에 a4p
 \% 문자에 대해서는 여기서 설명하는 것이 좋겠다. \%는 주석(comment)을 나타내는 특수문자이다. 따라서 \LaTeX이 컴파일 할 때 무시해 버린다. HTML의 `\verb|<!-- -->|', Python의 `\verb|#|'\과 같다.
 
 \subsection{따옴표}
-작은따옴표나 큰따옴표를 입력해야 하는 경우가 많다. 이 때 여는 따옴표와 닫는 따옴표의 모양이 조금 다르다. \LaTeX에서는 다음과 같이 입력하면 이들 따옴표를 이쁜 따옴표\footnote{curly quotation mark}로 만들어 준다.\verbfootnote{프리앰블에서 \verb|\defaultfontfeatures{Ligatures=TeX}| 명령을 선언해야한다. 더 궁금한 사람은 KTUG QnA 게시판에 두텁님이 쓰신 \href{http://www.ktug.org/xe/index.php?mid=KTUG_QnA_board&page=2&document_srl=176043}{답글}을 읽어보자.}
+작은따옴표나 큰따옴표를 입력해야 하는 경우가 많다. 이 때 여는 따옴표와 닫는 따옴표의 모양이 조금 다르다. \LaTeX에서는 다음과 같이 입력하면 이들 따옴표를 이쁜 따옴표\footnote{curly quotation mark}로 만들어 준다.
 
 \begin{pyglist}
 `작은 따옴표', ``큰 따옴표''
 \end{pyglist}
 
+이것이 가능하려면 프리앰블에서 다음 명령을 선언해야한다.
+\begin{pyglist}
+\defaultfontfeatures{Ligatures=TeX}|
+\end{pyglist}
+이 명령은 fontspec이 제공한다.\footnote{자세한 내용은 KTUG QnA 게시판에 두텁님이 쓰신 \href{http://www.ktug.org/xe/index.php?mid=KTUG_QnA_board&page=2&document_srl=176043}{답글}을 읽어보자.}
 
 여는 따옴표(\verb|`|)는 키보드에서 숫자 1 왼쪽에 있는 키(틸데(\textasciitilde)와 같은 자리)이고, 닫는 따옴표(\verb|'|)는 키보드에서 엔터키 왼쪽에 있는 키(\verb|"|와 같은 자리)이다.\footnote{이 배열은 QWERTY 키보드를 기준으로 한 설명이다.}
 
@@ -1074,9 +1080,10 @@ My humble subjects \ldots
 
 \section{그 외 참고할만한 글}
 \begin{description}
+	\item[href{http://wiki.ktug.org/wiki/wiki.php/MemucsManual?action=download\&value=memucs-manual.pdf}{Memucs Manual}] 김강수 옮김
 \item[\href{http://faq.ktug.org/wiki/uploads/DonaldKnuth.pdf}{한없이 다양한 분야에 걸린 관심, 하나의 공통된 맥락}] 데니스 샤샤, 캐시 레이저어, 박영숙 옮김\footnote{세종연구원에서 출간된 `컴퓨터를 만든 15인의 과학자(Out of their minds)' 중 Donald Knuth 편}
 \item[\href{http://faq.ktug.org/faq/SampleDocument?action=download&value=LaTeXStance200912.pdf}{레이텍을 빨리 쓸 수 있는 방법 2009}] 이호재
-\item[\href{http://faq.ktug.org/faq/Karnes/2010-09?action=download&value=latex4wp-ko-7.pdf}{워드 프로세서 사용자를 위한 \LaTeX}] 김강수
+\item[\href{http://faq.ktug.org/faq/Karnes/2010-09?action=download&value=latex4wp-ko-7.pdf}{워드 프로세서 사용자를 위한 \LaTeX}] 김강수 옮김
 \item[\href{http://faq.ktug.org/faq/LaTeXWorkshop/2010?action=download&value=LaTeXLectNotes.pdf}{라텍 소개 및 기본 사용방법}] 조진환
 \item[\href{http://faq.ktug.org/faq/LaTeXWorkshop/2010?action=download&value=Introduction_to_Digital_Typography.pdf}{Introduction to
 Digital Typography}] 조진환
