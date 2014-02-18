@@ -95,7 +95,7 @@
 
 \title{모두를 위한 \LaTeX\\\small{부제: 근본없는 매뉴얼}}
 \author{dokenzy@gmail.com}
-\date{0.4판\\2014년 2월 4일}
+\date{0.5판\\2014년 2월 4일}
 \feetbelowfloat
 
 \begin{document}
@@ -112,6 +112,7 @@
 \clearpage
 \section*{바뀐 점}
 \begin{description}
+\item[0.5] 2014년 2월 18일. TeX Live 업데이트 내용 추가, 자잘한 부분 수정
 \item[0.4] 2014년 2월 4일. 찾아보기 추가, defaultfontfeatures 내용 추가, 카운터 이름을 index에서 hindex로 변경, 추천문서에 memucs-manual 추가, 자잘한 것 몇 개 수정
 \item[0.3] 2013년 12월 20일. 맞춤법 수정, MWE 내용 추가, 자잘한 것 몇 개 수정. 조언해주신 이주호님께 감사드립니다.
 \item[0.2] 2013년 12월 20일. `워드 프로세서, 멍청하고 비효율적인 도구' 한글판 링크 추가, 자잘한 것 몇 개 수정
@@ -166,6 +167,22 @@ CSS 없이 HTML 코드에 스타일을 구겨 넣었던 1990년대를 기억하�
 \item[Windows] 윈도우즈 사용자는 KTS와 KTUG에서 제작한 ko.TeXLive 2013\footnote{\href{http://www.ktug.org/xe/index.php?mid=KTUG_open_board&document_srl=175806}{ko.TeX Live 2013}}을 이용하면 쉽게 설치할 수 있다. 인스톨러의 안내대로 설치하면 끝난다.
 \item[Linux] 리눅스에서는 인터넷을 통해 설치하는 방법을 추천한다. 설치페이지에서 install-tl-unx.tar.gz파일을 다운로드한 후 install-tl 설치 스크립트를 이용해서 설치한다. perl-tk가 설치되어 있다면 설치 스크립트를 실행할 때 -{}-gui 옵션을 추가하여 GUI로 설치를 진행할 수 있다. 일부 배포판의 경우 개인 사용자들이 패키징을 해놓은 것들이 있다. 이런 패키지를 이용하는 방법도 있다.
 \end{description}
+
+\paragraph{TeXLive 업데이트}
+MacTeX이나 ko.TeXLive 2013으로 설치한 후에는 업데이트를 해주어야 한다. 또한 TeXLive를 사용하다가도 한 달에 한 번 정도는 업데이트를 해주는 것이 좋다. TeX Live를 최신 버전으로 업데이트하기 위해서는 명령행에서 다음 명령을 실행한다.
+
+\begin{pyglist}[language=bash]
+$ tlmgr update --self --all
+\end{pyglist}
+
+위 명령을 실행했는데 퍼미션 오류가 발생한다면 root권한으로 위 명령을 실행해야 한다. Mac OS X나 데비안 계열의 경우 sudo와 함께 사용하면 된다. 다른 리눅스에서도 root권한으로 실행하면 된다.
+
+업데이트를 오랫동안 안하면 \figurename~\ref{fig:update}처럼 된다.
+\begin{figure}
+\caption{tlmgr update}
+\label{fig:update}
+\includegraphics[width=\textwidth]{tlmgr-update}
+\end{figure}
 
 \section{Mac OS X에서 폰트경로 설정하기}
 Mac OS에서는 \XeTeX을 위한 설정을 한 번 해주어야 한다. \footnote{윈도우즈는 \texttt{fc-cache}명령을 실행해야 한다. ko.TeX Live 2013는 설치 과정 마지막에 자동으로 해준다.}
@@ -635,6 +652,8 @@ Rerun to get cross-references right.
 \end{figure}
 
 이 명령은 다양한 옵션을 제공하는데 width는 가로, height는 높이, angle은 회전 각도를 뜻한다. 다른 옵션들은 설명서를 참고하라.
+
+여기서 주의할 점은 \verb|\label{}|명령을 사용할 경우, \verb|\caption{}|명령 뒤에 사용해야 한다. 그래야 어딘가에서 \verb|\ref{}|명령으로 내부 참조를 할 때 해당 그림으로 이동할 수 있다.
 
 \begin{pyglist}
 \centering
