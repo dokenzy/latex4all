@@ -3,7 +3,12 @@ latex4all
 
 LaTeX 입문자를 위한 간단한 설명서
 
-컴파일 방법
+TODO
+----
+
+Writing a build script(SCon or Makefile)
+
+Compile
 --------
 
 1. xelatex --shell-escape latex4all(3번)
