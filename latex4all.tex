@@ -95,7 +95,7 @@
 
 \title{모두를 위한 \LaTeX\\\small{부제: 근본없는 매뉴얼}}
 \author{dokenzy@gmail.com}
-\date{0.5.1판\\2014년 3월 25일}
+\date{0.6판\\2014년 3월 27일}
 \feetbelowfloat
 
 \begin{document}
@@ -112,8 +112,9 @@
 \clearpage
 \section*{바뀐 점}
 \begin{description}
+\item[0.6] 2014년 3월 25일. 특수문자 설명 추가, 참고문헌 추가, 자잘한 부분 수정
 \item[0.5] 2014년 2월 18일. TeX Live 업데이트 내용 추가, 자잘한 부분 수정
-\item[0.4] 2014년 2월 4일. 찾아보기 추가, defaultfontfeatures 내용 추가, 카운터 이름을 index에서 hindex로 변경, 추천문서에 memucs-manual 추가, 자잘한 것 몇 개 수정
+\item[0.4] 2014년 2월 4일. 찾아보기 추가, defaultfontfeatures 내용 추가, 카운터 이름 변경, 추천문서 추가, 자잘한 것 몇 개 수정
 \item[0.3] 2013년 12월 20일. 맞춤법 수정, MWE 내용 추가, 자잘한 것 몇 개 수정. 조언해주신 이주호님께 감사드립니다.
 \item[0.2] 2013년 12월 20일. `워드 프로세서, 멍청하고 비효율적인 도구' 한글판 링크 추가, 자잘한 것 몇 개 수정
 \item[0.1] 2013년 12월 13일. 최초 공개
@@ -177,7 +178,7 @@ $ tlmgr update --self --all
 
 위 명령을 실행했는데 퍼미션 오류가 발생한다면 root권한으로 위 명령을 실행해야 한다. Mac OS X나 데비안 계열의 경우 sudo와 함께 사용하면 된다. 다른 리눅스에서도 root권한으로 실행하면 된다.
 
-업데이트를 오랫동안 안하면 \figurename~\ref{fig:update}처럼 된다.
+업데이트를 오랫동안 안하면 \figurename~\ref{fig:update}처럼 수백 개를 한 번에 업데이트하게 되는 수가 있다.
 \begin{figure}
 \caption{tlmgr update}
 \label{fig:update}
@@ -185,7 +186,7 @@ $ tlmgr update --self --all
 \end{figure}
 
 \section{Mac OS X에서 폰트경로 설정하기}
-Mac OS에서는 \XeTeX을 위한 설정을 한 번 해주어야 한다. \footnote{윈도우즈는 \texttt{fc-cache}명령을 실행해야 한다. ko.TeX Live 2013는 설치 과정 마지막에 자동으로 해준다.}
+Mac OS에서는 \XeTeX을 위한 설정을 한 번 해주어야 한다. \footnote{윈도우즈는 \texttt{fc-cache}명령을 실행해야 한다. ko.TeX Live 2013는 설치 과정 마지막에 자동으로 해준다. 하지만 설치 후에 추가된 폰트를 사용하기 위해서는 이 명령을 직접 실행해 주어야 한다.}
 
 /usr/local/texlive/2013/texmf.cnf 파일을 텍스트 에디터로 열어서 다음 내용을 추가하자.
 
@@ -256,7 +257,7 @@ OSFONTDIR = {~/Library/Fonts;/Library/Fonts;/System/Library/Fonts}
 \end{figure}
 
 \section{알고보면 사연이 많은 예제코드}
-\TeX은 강력한 조판시스템이다. 강력한 만큼 배울 게 많다. 앞의 예제코드 역시 매우 간단한 코드이지만 그 속에는 많은 사연이 들어있다. 본격적으로 시작하기 전에 예제코드를 꼼꼼히 살펴보겠다.
+\TeX은 강력한 조판시스템이다. 강력한 만큼 배울 게 많다. 앞의 예제코드는 매우 간단한 코드이지만 그 속에는 많은 사연이 들어있다. 본격적으로 시작하기 전에 예제코드를 꼼꼼히 살펴보겠다.
 
 \subsection{클래스(documentclass)}
 \index{클래스}
@@ -274,12 +275,12 @@ oneside 옵션은 article 클래스가 제공하는 옵션이다. 이 외에 a4p
 \section[시작]{\LaTeX 시작하기}
 \end{pyglist}
 
-옵션이 있는 명령도 있고 없는 명령도 있다. \verb|\section[시작]{\LaTeX 시작하기}|는 옵션이 있는 명령이고, \verb|\LaTeX|은 없는 명령이다. 또 옵션이나 인자가 2개 이상인 명령도 있다. 만약 텍 문서를 컴파일 하는 중에 \texttt{! Undefined control sequence.} 오류가 발생한다면, 명령에 오타가 있거나 정의되지 않은 명령(클래스나 사용하는 패키지에 없는 명령)을 쓴 것이다. 이럴 때는 해당 명령을 제공하는 클래스나 패키지 매뉴얼을 읽어봐야 한다. 매뉴얼에 대한 설명은 \ref{sec:texdoc}\sectionname~\titleref{sec:texdoc}을 참조한다.
+대괄호(\verb|[]|)는 옵션이고, 중괄호(\verb|{}|)는 명령의 이름이다. 명령에 따라 옵션이 있을 수도 있고 없을 수도 있다. 또 옵션이나 인자가 2개 이상인 명령도 있다. 만약 텍 문서를 컴파일 하는 중에 \texttt{! Undefined control sequence.} 오류가 발생한다면, 명령에 오타가 있거나 정의되지 않은 명령(클래스나 사용하는 패키지에 없는 명령)을 쓴 것이다. 이럴 때는 해당 명령을 제공하는 클래스나 패키지 매뉴얼을 읽어봐야 한다. 매뉴얼에 대한 설명은 \ref{sec:texdoc}\sectionname~\titleref{sec:texdoc}을 참조하기 바란다.
 
 \subsection{환경(environment)}\label{subsec:environment}
-환경은 예제의 \verb|\begin{center}|\ldots\verb|\end{center}|와 같은 형식을 갖는다. 옵션의 위치는 환경에 따라 조금씩 다를 수 있다.
+환경은 \verb|\begin{center}|\ldots\verb|\end{center}|와 같은 형식을 갖는다. 옵션의 위치는 환경에 따라 조금씩 다를 수 있다.
 
-\verb|\begin{document}|\ldots\verb|\end{document}|도 환경이다. \texttt{document} 환경은 \LaTeX 문서라면 반드시 하나만 존재해야 하는 중요한 환경이다. 마치 HTML의 \verb|<body>|태그와 같다. 환경 역시 정확한 사용방법은 매뉴얼을 보는 것이다.
+\verb|\begin{document}|\ldots\verb|\end{document}|도 환경이다. \texttt{document} 환경은 \LaTeX 문서라면 반드시 하나만 존재해야 하는 중요한 환경이다. 마치 HTML의 \verb|<body>|태그와 같다. 환경 역시 정확한 사용방법은 매뉴얼을 보는 것이다. 
 
 \subsection{프리앰블(Preamble)}
 \index{프리앰블}
@@ -324,11 +325,39 @@ oneside 옵션은 article 클래스가 제공하는 옵션이다. 이 외에 a4p
 \index{특수문자}
 \LaTeX에서는 몇 가지 문자들을 특별한 용도로 사용한다. 따라서 문서 내에 그냥 입력하게 되면 오류가 발생하거나 의도하지 않은 결과가 나올 것이다.
 \begin{pyglist}
-# $ % ^ & _ { } ~ \
+# $ % ^ _ & \ ~ { }
 \end{pyglist}
 위 특수문자들을 입력하기 위해서는 사용하고 싶은 특수문자 앞에 백슬래시(\textbackslash)를 더해주면 된다. 다만 \textbackslash의 경우 \verb|\\|는 줄바꿈명령이므로, \verb|\textbackslash|명령을 사용한다.
 
-\% 문자에 대해서는 여기서 설명하는 것이 좋겠다. \%는 주석(comment)을 나타내는 특수문자이다. 따라서 \LaTeX이 컴파일 할 때 무시해 버린다. HTML의 `\verb|<!-- -->|', Python의 `\verb|#|'\과 같다.
+\%는 주석(comment)을 나타내는 특수문자이다. 따라서 \LaTeX이 컴파일 할 때 무시해 버린다. HTML의 `\verb|<!-- -->|', Python의 `\verb|#|'\과 같다.
+
+\#은 사용자 정의 명령이나 환경을 정의할 때 사용되는 기호이다. \ref{subsec:cmd_with_option}\sectionname~\titleref{subsec:cmd_with_option}을 참고한다.
+
+\$은 수식을 조판할 때 쓰인다. \$와 \$ 사이에 수식을 넣으면 \LaTeX이 수식을 예쁘게 조판해 준다.
+
+\begin{pyglist}
+$x=\frac{-b\pm\sqrt{b^2-4ac}}{2a}$
+\end{pyglist}
+
+\begin{showresult}
+$x=\frac{-b\pm\sqrt{b^2-4ac}}{2a}$
+\end{showresult}
+
+하지만 수식을 입력할 때는 \$ 기호 대신 \verb|\[, \]|를 사용하는 것을 권한다.
+
+\begin{pyglist}
+\[x=\frac{-b\pm\sqrt{b^2-4ac}}{2a}\]
+\end{pyglist}
+
+\verb|^|, \verb|_| 은 각각 수식에서 윗첨자, 아래첨자를 뜻한다. 이외 수식과 관련한 내용은 \texttt{lshort-kr}문서의 `제 3장. 수식 조판하기'를 참조하기 바란다.
+
+\&는 표(Table)에서 다음 열로 넘어갈 때 쓰인다.
+
+\verb|\\|는 문단을 나눌 때도 쓰이지만, 표에서는 새로운 행을 추가할 때도 쓰인다.
+
+\verb|~|(틸데)는 줄바꿈이 안되는, 폭이 고정된 공백을 만들어준다. 만약 $\sim$을 표시하고 싶은 거라면 \verb|$sim$|를 입력한다.
+
+\{와 \}는 굳이 설명하지 않겠다. \verb|\begin{document}|만 봐도 어디에 쓰이는지 알 수 있을 것이다.
 
 \subsection{따옴표}
 \index{따옴표}
@@ -338,21 +367,21 @@ oneside 옵션은 article 클래스가 제공하는 옵션이다. 이 외에 a4p
 `작은 따옴표', ``큰 따옴표''
 \end{pyglist}
 
-이것이 가능하려면 프리앰블에서 다음 명령을 선언해야한다.
-\begin{pyglist}
-\defaultfontfeatures{Ligatures=TeX}|
-\end{pyglist}
-이 명령은 fontspec이 제공한다.\footnote{자세한 내용은 KTUG QnA 게시판에 두텁님이 쓰신 \href{http://www.ktug.org/xe/index.php?mid=KTUG_QnA_board&page=2&document_srl=176043}{답글}을 읽어보자.}
-
-여는 따옴표(\verb|`|)는 키보드에서 숫자 1 왼쪽에 있는 키(틸데(\textasciitilde)와 같은 자리)이고, 닫는 따옴표(\verb|'|)는 키보드에서 엔터키 왼쪽에 있는 키(\verb|"|와 같은 자리)이다.\footnote{이 배열은 QWERTY 키보드를 기준으로 한 설명이다.}
-
 \begin{showresult}
 `작은 따옴표', ``큰 따옴표''
 \end{showresult}
 
+이것이 가능하려면 fontspec이 제공하는 다음 명령을 프리앰블에 선언해야 한다.\footnote{자세한 내용은 KTUG QnA 게시판에 두텁님이 쓰신 \href{http://www.ktug.org/xe/index.php?mid=KTUG_QnA_board&page=2&document_srl=176043}{답글}을 읽어보자.}
+
+\begin{pyglist}
+\defaultfontfeatures{Ligatures=TeX}
+\end{pyglist}
+
+여는 따옴표(grave accent, \verb|`|)는 키보드에서 숫자 1 왼쪽에 있는 키(틸데(\textasciitilde)와 같은 자리)이고, 닫는 따옴표(vertical quote, \verb|'|)는 키보드에서 엔터키 왼쪽에 있는 키(\verb|"|와 같은 자리)이다.\footnote{이 배열은 QWERTY 자판을 기준으로 한 설명이다.}
+
 \section{texdoc}\label{sec:texdoc}
 \index{texdoc}
-\verb|texdoc|명령을 이용하면 설명서를 쉽게 찾아서 읽을 수 있다. 대부분의 클래스나 패키지의 설명서는  \texttt{<texdoc 패키지이름>}과 같은 방식으로 읽을 수 있다. 예를 들어 \koTeX에 대한 설명서를 읽기 위해서는 터미널 또는 명령프롬프트에서 \texttt{<texdoc kotex>} 명령을 실행하면 된다. 그러면 시스템의 PDF기본 뷰어로 kotexdoc.pdf 파일이 열린다.
+\verb|texdoc|명령을 이용하면 설명서를 쉽게 열 수 있다. 대부분의 클래스나 패키지의 설명서는  \texttt{<texdoc 패키지이름>}과 같은 방식으로 읽을 수 있다. 예를 들어 \koTeX에 대한 설명서를 읽기 위해서는 터미널 또는 명령프롬프트에서 \texttt{texdoc kotex} 명령을 실행하면 된다. 그러면 시스템의 기본 PDF 뷰어가 실행되면서 kotexdoc.pdf 파일이 열린다.
 
 \chapter{기본 명령과 환경}\label{chap:basic}
 
@@ -375,7 +404,7 @@ oneside 옵션은 article 클래스가 제공하는 옵션이다. 이 외에 a4p
 \LaTeX은 몇 가지 장절명령을 제공함으로써 논리적인 문서를 만드는 것을 도와준다.
 \verb|\chapter{}|는 장(章), \verb|\section{}|은 절(節), \verb|\subsection{}|은 소절(小節)을 의미한다. 이 명령들은 문서를 논리적으로 구분해 줄 뿐만 아니라, \verb|\tableofcontents| 명령(\ref{sec:toc}\sectionname~\titleref{sec:toc})이 차례를 만들 때 단락제목, 장절번호, 페이지번호 등을 자동으로 넣어준다. 만약 장절 명령을 쓰고 싶되, 차례에는 나타내고 싶지 않다면 \verb|\chapter*{}|와 같이 \textbf{*}를 붙여주면 된다.
 
-간혹 단락제목이 너무 길면 차례에서 볼 때 불편한 경우가 생길 수 있다. 이 때는 \verb|\chapter[short title]{very long chapter title}|과 같이 옵션을 주면, 차례에는 `short title'이, 본문에는 `very long chapter title'이 들어간다.
+단락제목이 너무 길면 차례에서 볼 때 불편할 수 있다. 이 때는 \verb|\chapter[short title]{very long chapter title}|과 같이 옵션을 주면, 차례에는 `short title'이, 본문에는 `very long chapter title'이 들어간다.
 
 \section{목록}
 \index{목록}
@@ -413,10 +442,9 @@ HTML의 \verb|<ul>|태그와 같다. 항목 기호를 점 대신 하이픈(-)으
 \end{itemize}
 \end{showresult}
 
-만약 순서가 중요한 경우라면 itemize 환경 대신 enumerate 환경을 이용하자. \TeX이 알아서 번호를 매겨준다. HTML의 \verb|<ol>|태그와 같다.
+만약 순서가 중요한 경우라면 itemize 환경 대신 enumerate\index{enumerate} 환경을 이용하자. \TeX이 알아서 번호를 매겨준다. HTML의 \verb|<ol>|태그와 같다.
 \begin{pyglist}
 \begin{enumerate}
-\index{enumerate}
 \item 좋아하는 연예인 이름
 \item 좋아하는 편집기
 \item 우리동네에 있는 카페
@@ -1075,6 +1103,7 @@ oblivoir는 바로 그런 사람들이 좋아할 만한 클래스이다. memoir 
 으로 선언하면 된다. 이제 본문에서 \verb|\bjarne|라고 쓴 곳은 전부 `비야네 스트롭스트룹'이라고 나올 것이다.
 
 \subsection{옵션이 있는 명령}
+\label{subsec:cmd_with_option}
 \ref{sec:xcolor}\chaptername~\titleref{sec:xcolor}의 예제에서 다음과 같은 명령을 사용했다.
 \begin{pyglist}
 \textcolor{SunOrange}{햇빛오렌지색}
