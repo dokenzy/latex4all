@@ -1,0 +1,63 @@
+\hypersetup{
+	pdfauthor={dokenzy},
+    pdftitle={모두를 위한 LaTeX},
+    pdfsubject={LaTeX을 시작하려는 사람들을 위한 성의없는 설명서},
+    pdfkeywords={LaTeX, 매뉴얼, 너무 성의없다},
+    colorlinks= true,
+    linkcolor=blue,
+    urlcolor=blue,
+    citecolor=blue,
+    anchorcolor=blue
+}
+\newcommand{\inlinecode}[1]{\raisebox{0.25ex}{#1}}
+\newcommand{\google}{구글}
+\newcommand{\texworks}{TeXworks}
+
+\setlength\parskip{1.0em}
+\setlength\parindent{0pt}
+
+% 예제결과 박스
+\newmdenv[%
+	nobreak=true,
+	roundcorner=5pt,
+	linewidth=0.3pt,
+	linecolor=Goldenrod,
+	subtitlebelowline=true,
+	subtitleaboveline=true,
+	backgroundcolor=white, 
+	frametitle=결과,
+	frametitlefont=\ttfamily\small,
+	frametitlerule=true, 
+	frametitlerulewidth=0.5pt,
+	frametitlebackgroundcolor=Gold
+]{showresult}
+
+% 예제코드 박스
+\mdtheorem[%
+	nobreak=true,
+	linewidth=0.3pt ,%
+	innerleftmargin=5pt,
+	innerrightmargin=5pt,
+	innertopmargin=15pt,
+	innerbottommargin=3pt,
+	leftmargin = 40 ,%
+	rightmargin = 40 ,%
+	leftmargin=0em,
+	rightmargin=0em,
+	linecolor=Goldenrod,
+	roundcorner=5pt,
+	backgroundcolor=Cornsilk1,
+	frametitlerule=true,%
+	frametitlebackgroundcolor=Gold,
+	frametitlefont=\sffamily\small,
+	frametitleaboveskip=2pt,
+	frametitlebelowskip=2pt]
+{mdcodebox}{Code}
+
+\BeforeBeginEnvironment{pyglist}{\begin{mdcodebox}}
+\AfterEndEnvironment{pyglist}{\end{mdcodebox}}
+
+% 그림 캡션 모양
+\captiondelim{ } % "그림:" 에서 ":"을 없앰
+\captionnamefont{\footnotesize\bfseries\sffamily} % "그림"을 굵게
+\captiontitlefont{\footnotesize\sffamily} % 본문은 보통 굵기로
