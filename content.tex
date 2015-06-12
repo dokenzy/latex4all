@@ -1,3 +1,4 @@
+%!TEX root = latex4all.tex
 \frontmatter
 \chapter{들어가며}
 \section{왜 \LaTeX인가?}
@@ -647,7 +648,7 @@ S_n(x)=\frac{1}{\pi}\int_{\pi}^{\pi}f(t)\frac{sin(n+1/2)(t-x)}{sin(t-x)/2}dt
 \end{pyglist}
 
 위 코드의 결과는 다음과 같다.\verbfootnote{수식코드에 쫄지 않아도 된다. 수학자가 아니라면 이렇게 입력할 일이 없고, 수학자라면 이런 수식은 어렵지 않을 것이다.}
-\begin{showresult}[innertopmargin=18pt]
+\begin{showresult}%[innertopmargin=18pt]
 \begin{mdframed}[
 	linecolor=Green!80,
 	roundcorner=10pt,
@@ -1093,16 +1094,3 @@ Digital Typography}] 조진환
 \end{description}
 %%%
 \clearpage
-\printindex
-
-\pagestyle{empty}
-\pagenumbering{gobble}
-\chapter*{마치며}
-근본없는 \LaTeX 매뉴얼은 여기까지다. 힘들어서 맞춤법 수정도 포기했다. tex 소스가 겨우 1050줄에 불과한, A4기준 50쪽도 안되는 문서인데도 불구하고 힘들다. memoir설명서나 lshort-kr같은 문서를 번역하신 분들의 노고가 새삼 더 크게 느껴진다.
-
-영국이나 미국 등에서 초등학생부터 컴퓨터 프로그래밍 교육을 시작한다고 한다. 특히 영국은 5세부터는 간단한 프로그래밍 과정을 가르치고, 11세 이상 학생에게는 실제 프로그래밍 언어를 교육한다고 한다. 나는 \LaTeX 교육도 프로그래밍 교육 이상의 효과가 있을 것이라고 생각한다. 프로그래밍하듯이 글쓰기를 하니 이보다 좋은 교육방법이 있을까? 또한 웹퍼블리셔에게도 좋은 훈련 방법이 될 것이다. validator만 통과한다고 좋은 마크업이 아니잖은가.
-
-\vfill
-\begin{flushright}
-\zapfino{Dokenzy}
-\end{flushright}

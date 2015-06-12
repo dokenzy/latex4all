@@ -1,16 +1,20 @@
-%!TEX TS-program = xelatex
+%!TEX TS-program = arara
 %!TEX encoding = UTF-8 Unicode
 % copyright dokenzy@gmail.com
 % 
+% arara: xelatex: {shell: yes}
+%
 \documentclass[oneside, chapter, 11pt]{oblivoir}
 
 \include{load_packages}
 \include{set_bodystyle}
 \include{set_font}
 
+
+\newcommand{\version}{0.6.5}
 \title{모두를 위한 \LaTeX\\\small{부제: 근본없는 매뉴얼}}
-\author{dokenzy@gmail.com}
-\date{0.6판\\2014년 3월 27일}
+\author{dokenzy@gmail.com\\nova de hi}
+\date{\version판\\2015년 6월 12일}
 \feetbelowfloat
 
 \begin{document}
@@ -27,6 +31,7 @@
 \clearpage
 \section*{바뀐 점}
 \begin{description}
+\item[\version] 2015년 6월 12일. 코드환경을 tcolorbox와 minted 조합으로 변경(nova de hi님)
 \item[0.6] 2014년 3월 25일. 특수문자 설명 추가, 참고문헌 추가, 자잘한 부분 수정
 \item[0.5] 2014년 2월 18일. TeX Live 업데이트 내용 추가, 자잘한 부분 수정
 \item[0.4] 2014년 2월 4일. 찾아보기 추가, defaultfontfeatures 내용 추가, 카운터 이름 변경, 추천문서 추가, 자잘한 것 몇 개 수정
@@ -41,4 +46,6 @@
 %\listoftables
 
 \include{content}
+\include{append}
+\include{backmatter}
 \end{document} 

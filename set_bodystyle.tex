@@ -1,5 +1,5 @@
 \hypersetup{
-	pdfauthor={dokenzy},
+	pdfauthor={dokenzy, nova de hi},
     pdftitle={모두를 위한 LaTeX},
     pdfsubject={LaTeX을 시작하려는 사람들을 위한 성의없는 설명서},
     pdfkeywords={LaTeX, 매뉴얼, 너무 성의없다},
@@ -16,46 +16,17 @@
 \setlength\parskip{1.0em}
 \setlength\parindent{0pt}
 
-% 예제결과 박스
-\newmdenv[%
-	nobreak=true,
-	roundcorner=5pt,
-	linewidth=0.3pt,
-	linecolor=Goldenrod,
-	subtitlebelowline=true,
-	subtitleaboveline=true,
-	backgroundcolor=white, 
-	frametitle=결과,
-	frametitlefont=\ttfamily\small,
-	frametitlerule=true, 
-	frametitlerulewidth=0.5pt,
-	frametitlebackgroundcolor=Gold
-]{showresult}
+\tcbset{listing engine=minted}
 
-% 예제코드 박스
-\mdtheorem[%
-	nobreak=true,
-	linewidth=0.3pt ,%
-	innerleftmargin=5pt,
-	innerrightmargin=5pt,
-	innertopmargin=15pt,
-	innerbottommargin=3pt,
-	leftmargin = 40 ,%
-	rightmargin = 40 ,%
-	leftmargin=0em,
-	rightmargin=0em,
-	linecolor=Goldenrod,
-	roundcorner=5pt,
-	backgroundcolor=Cornsilk1,
-	frametitlerule=true,%
-	frametitlebackgroundcolor=Gold,
-	frametitlefont=\sffamily\small,
-	frametitleaboveskip=2pt,
-	frametitlebelowskip=2pt]
-{mdcodebox}{Code}
+\newtcblisting[auto counter]{pyglist}
+	{fonttitle=\sffamily\small,title=Code~\thetcbcounter,breakable,listing only,
+	 minted options={tabsize=4,fontsize=\small},
+	 colframe=Goldenrod,
+	}
+\newtcblisting{showresult}{title=결과,fonttitle=\sffamily\small,text only,colframe=Goldenrod,colback=Cornsilk1}
 
-\BeforeBeginEnvironment{pyglist}{\begin{mdcodebox}}
-\AfterEndEnvironment{pyglist}{\end{mdcodebox}}
+
+\usepackage{mdframed}
 
 % 그림 캡션 모양
 \captiondelim{ } % "그림:" 에서 ":"을 없앰
